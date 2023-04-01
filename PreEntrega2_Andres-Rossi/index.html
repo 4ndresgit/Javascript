@@ -5,17 +5,36 @@
     <link rel="stylesheet" href="./style/main.css" />
   </head>
   <body>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Novedades</a></li>
+      </ul>
+      <div class="redes-sociales">
+        <a href="#"><img src="instagram.png" alt="Instagram"></a>
+        <a href="#"><img src="facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="whatsapp.png" alt="WhatsApp"></a>
+      </div>
+    </nav>
     <h1>Calculadora de IMC</h1>
     <form>
-      <label for="peso">Peso en kg:</label>
+      
+      <label for="peso">Peso en kgs:</label>
       <input type="number" id="peso" name="peso" required />
 
-      <label for="altura">Altura en m:</label>
+      <label for="altura">Altura en Mts:</label>
       <input type="number" id="altura" name="altura" required />
 
       <button id="calcular-btn" type="button">Calcular</button>
 
       <div class="resultado" id="resultado"></div>
+
+      <div>
+        <p id="resultado"></p>
+        <p id="consejos"></p>
+      </div>
     </form>
 
     <script src="calcularImc.js"></script>

@@ -1,0 +1,113 @@
+/* Estilos para el menú hamburguesa */
+.hamburger {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.hamburger__bar {
+  display: block;
+  width: 1.5rem;
+  height: 0.2rem;
+  margin-bottom: 0.3rem;
+  background: black;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Estilos para el menú desplegable */
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 1rem;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.125rem;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Estilos para las cards */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 450px;
+  height: 236px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  border: solid 1px #ddd;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  max-width: 25rem;
+  text-align: center;
+}
+
+.card h2 {
+  margin-bottom: 1rem;
+}
+
+.card-btn {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.card-btn:hover {
+  background-color: #555;
+}
+
+.card-input {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 100%;
+  max-width: 10rem;
+}
+
+/* Estilos para el botón de calcular */
+.calcular-btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.calculate-btn:hover {
+  background-color: #555;
+}
