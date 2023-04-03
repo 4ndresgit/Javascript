@@ -49,7 +49,7 @@ calcularBtn.addEventListener('click', () => {
 //Toma como parámetro el rango de peso y muestra en pantalla un mensaje con los consejos
 function mostrarConsejos(rango) {
   let consejos = '';
-  if (rango === 'Bajo peso') {
+  if (rango === 'Delgadez extrema') {
     consejos =
       'Algunos consejos para subir de peso son: consumir más calorías de las que se gastan, aumentar el consumo de proteínas y carbohidratos, realizar ejercicios de fuerza para aumentar la masa muscular, entre otros.';
   } else if (rango === 'Peso normal') {
@@ -58,7 +58,7 @@ function mostrarConsejos(rango) {
   } else if (rango === 'Sobrepeso') {
     consejos =
       'Algunos consejos para bajar de peso son: seguir una dieta saludable y equilibrada, reducir el consumo de alimentos procesados y bebidas azucaradas, aumentar la actividad física, controlar las porciones de comida, entre otros.';
-  } else if (rango === 'Obesidad') {
+  } else if (rango === 'Obesidad tipo 2') {
     consejos =
       'Es importante buscar ayuda profesional para tratar la obesidad, ya que puede estar asociada a problemas de salud graves. Algunos consejos generales son: seguir una dieta saludable y equilibrada, hacer ejercicio regularmente, reducir el estrés, controlar las porciones de comida, entre otros.';
   }
