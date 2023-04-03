@@ -1,4 +1,73 @@
-// Definimos los datos de los géneros
+// Obtener elementos del DOM
+const hombreBtn = document.getElementById('hombre-btn');
+const mujerBtn = document.getElementById('mujer-btn');
+const edadInput = document.querySelector('input[placeholder="Edad"]');
+const alturaInput = document.querySelector('input[placeholder="Altura"]');
+const pesoInput = document.querySelector('input[placeholder="Peso"]');
+const calcularBtn = document.getElementById('calcular-btn');
+const resultadoCard = document.getElementById('resultado-card');
+const resultadoText = document.getElementById('resultado-text');
+
+// Variables globales
+let genero = '';
+let edad = 0;
+let altura = 0;
+let peso = 0;
+
+// Función para calcular el IMC
+function calcularIMC() {
+  // Convertir altura a metros
+  const alturaMetros = altura / 100;
+
+  // Calcular IMC
+  const imc = peso / (alturaMetros * alturaMetros);
+
+  // Determinar la categoría de peso
+  let categoria = '';
+  if (imc < 18.5) {
+    categoria = 'Bajo peso';
+  } else if (imc >= 18.5 && imc < 25) {
+    categoria = 'Peso normal';
+  } else if (imc >= 25 && imc < 30) {
+    categoria = 'Sobrepeso';
+  } else {
+    categoria = 'Obesidad';
+  }
+
+  // Mostrar resultado en pantalla
+  resultadoText.textContent = `Tu IMC es ${imc.toFixed(
+    1
+  )} y estás en la categoría de ${categoria}.`;
+  resultadoCard.style.display = 'block';
+}
+
+// Asignar eventos a los botones de género
+hombreBtn.addEventListener('click', function () {
+  genero = 'Hombre';
+});
+
+mujerBtn.addEventListener('click', function () {
+  genero = 'Mujer';
+});
+
+// Asignar eventos al botón de calcular
+calcularBtn.addEventListener('click', function () {
+  // Obtener los valores de los inputs
+  edad = Number(edadInput.value);
+  altura = Number(alturaInput.value);
+  peso = Number(pesoInput.value);
+
+  // Validar que se hayan ingresado todos los valores
+  if (genero === '' || isNaN(edad) || isNaN(altura) || isNaN(peso)) {
+    alert('Por favor ingresa todos los valores necesarios.');
+    return;
+  }
+
+  // Calcular el IMC y mostrar resultado en pantalla
+  calcularIMC();
+});
+
+/*/ Definimos los datos de los géneros
 const generos = [
   { id: 1, nombre: 'Hombre' },
   { id: 2, nombre: 'Mujer' },
@@ -117,6 +186,8 @@ function calcularIMC() {
       alert('La edad ingresada no es válida');
       return false;
     }
+    // Actualizamos el resultado en pantalla
+    actualizarResultado(mensajeResultado);
 
     if (alturaIngresada < 50 || alturaIngresada > 300) {
       alert('La altura ingresada no es válida');
@@ -131,5 +202,24 @@ function calcularIMC() {
     return true;
   }
 }
+
+const resultadoCard = document.getElementById('resultado-card');
+const resultadoText = document.getElementById('resultado-text');
+
+resultadoText.innerText = 'Tu IMC es: ' + imc.toFixed(2);
+
+resultadoCard.style.display = 'block';
+
 const btnCalcularIMC = document.getElementById('calcular-btn');
 btnCalcularIMC.addEventListener('click', calcularIMC);
+
+const calcularBtn = document.getElementById('calcular-btn');
+
+calcularBtn.addEventListener('click', () => {
+  calcularIMC();
+
+  // Mostrar resultado
+  const resultadoCard = document.getElementById('resultado-card');
+  resultadoCard.style.display = 'block';
+});
+*/
