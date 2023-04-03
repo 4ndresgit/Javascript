@@ -159,3 +159,4 @@ function filtrarUsuariosPorPeso(pesoMinimo, pesoMaximo) {
 function filtrarUsuariosPorAltura(alturaMinima, alturaMaxima) {
   return usuarios.filter((usuario) => usuario.alt);
 }
+

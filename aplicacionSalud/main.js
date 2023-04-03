@@ -34,7 +34,7 @@ function calcularIMC() {
     categoria = 'Obesidad';
   }
 
-  // Mostrar resultado en pantalla
+  // Resultado en pantalla
   resultadoText.textContent = `Tu IMC es ${imc.toFixed(
     1
   )} y estás en la categoría de ${categoria}.`;
@@ -65,6 +65,88 @@ calcularBtn.addEventListener('click', function () {
 
   // Calcular el IMC y mostrar resultado en pantalla
   calcularIMC();
+});
+
+// Objeto con información adicional
+const personas = [
+  {
+    nombre: 'Ana',
+    genero: 'Mujer',
+    edad: 28,
+    altura: 165,
+    peso: 60,
+  },
+  {
+    nombre: 'Juan',
+    genero: 'Hombre',
+    edad: 35,
+    altura: 175,
+    peso: 80,
+  },
+  {
+    nombre: 'María',
+    genero: 'Mujer',
+    edad: 42,
+    altura: 170,
+    peso: 65,
+  },
+];
+
+// Función para buscar y filtrar datos
+function buscarPersonas() {
+  // Obtener los valores de los inputs
+  const edadInputValue = Number(edadInput.value);
+  const alturaInputValue = Number(alturaInput.value);
+  const pesoInputValue = Number(pesoInput.value);
+
+  // Validar que se hayan ingresado todos los valores
+  if (
+    genero === '' ||
+    isNaN(edadInputValue) ||
+    isNaN(alturaInputValue) ||
+    isNaN(pesoInputValue)
+  ) {
+    alert('Por favor ingresa todos los valores necesarios.');
+    return;
+  }
+
+  // Filtrar personas por género y edad
+  const personasFiltradas = personas.filter(function (persona) {
+    return persona.genero === genero && persona.edad === edadInputValue;
+  });
+
+  // Filtrar personas por altura y peso
+  const personasFiltradas2 = personasFiltradas.filter(function (persona) {
+    return (
+      persona.altura === alturaInputValue && persona.peso === pesoInputValue
+    );
+  });
+
+  // Mostrar resultado en pantalla
+  if (personasFiltradas2.length > 0) {
+    resultadoText.textContent = `Se encontraron ${personasFiltradas2.length} personas con los siguientes valores: Género: ${genero}, Edad: ${edadInputValue}, Altura: ${alturaInputValue}, Peso: ${pesoInputValue}.`;
+  } else {
+    resultadoText.textContent = `No se encontraron personas con los siguientes valores: Género: ${genero}, Edad: ${edadInputValue}, Altura: ${alturaInputValue}, Peso: ${pesoInputValue}.`;
+  }
+
+  resultadoCard.style.display = 'block';
+}
+
+// Asignar eventos al botón de calcular
+calcularBtn.addEventListener('click', function () {
+  // Obtener los valores de los inputs
+  edad = Number(edadInput.value);
+  altura = Number(alturaInput.value);
+  peso = Number(pesoInput.value);
+
+  // Validar que se hayan ingresado todos los valores
+  if (genero === '' || isNaN(edad) || isNaN(altura) || isNaN(peso)) {
+    alert('Por favor ingresa todos los valores necesarios.');
+    return;
+  }
+
+  // Buscar y filtrar datos y mostrar resultado en pantalla
+  buscarPersonas();
 });
 
 /*/ Definimos los datos de los géneros
