@@ -3,92 +3,89 @@ class IMCCalculator {
     this.peso = peso;
     this.altura = altura;
   }
-
   calcularImc() {
     let indiceEntero = this.peso / (this.altura * this.altura);
     return indiceEntero.toFixed(2);
   }
-
   interpretarIMC(imc) {
-    if (imc < 16) {
-      return 'Delgadez extrema';
-    } else if (imc <= 16.99) {
-      return 'Delgadez moderada';
-    } else if (imc <= 18.49) {
-      return 'Delgadez aceptable';
-    } else if (imc <= 24.99) {
-      return 'Peso normal';
-    } else if (imc <= 30) {
-      return 'Sobrepeso';
-    } else if (imc <= 34.99) {
-      return 'Obesidad tipo 1';
-    } else if (imc <= 40) {
-      return 'Obesidad tipo 2';
-    } else if (imc <= 49.99) {
-      return 'Obesidad tipo 3';
-    } else if (imc > 50) {
-      return 'Obesidad extrema';
+    const rangos = [
+      { valor: 16, mensaje: 'Delgadez extrema' },
+      { valor: 16.99, mensaje: 'Delgadez moderada' },
+      { valor: 18.49, mensaje: 'Delgadez aceptable' },
+      { valor: 24.99, mensaje: 'Peso normal' },
+      { valor: 30, mensaje: 'Sobrepeso' },
+      { valor: 34.99, mensaje: 'Obesidad tipo 1' },
+      { valor: 40, mensaje: 'Obesidad tipo 2' },
+      { valor: 49.99, mensaje: 'Obesidad tipo 3' },
+      { valor: Infinity, mensaje: 'Obesidad extrema' },
+    ];
+
+    for (let i = 0; i < rangos.length; i++) {
+      if (imc < rangos[i].valor) {
+        return rangos[i].mensaje;
+      }
     }
   }
 }
 
 const calcularBtn = document.querySelector('#calcular-btn');
 const resultadoDiv = document.querySelector('#resultado');
+const estiloDiv = document.getElementById('estilos');
 
 calcularBtn.addEventListener('click', () => {
   const peso = parseFloat(document.querySelector('#peso').value);
-  const altura = parseFloat(document.querySelector('#altura').value);
+  const altura = parseFloat(document.querySelector('#altura').value) * 0.01;
 
   const imcCalculator = new IMCCalculator(peso, altura);
   const imc = imcCalculator.calcularImc();
   const interpretacionIMC = imcCalculator.interpretarIMC(imc);
 
   resultadoDiv.innerHTML = `<p>Su IMC es ${imc} e indica que tiene "${interpretacionIMC}"</p>`;
+  mostrarConsejos(imc);
 });
 
 //Toma como parámetro el rango de peso y muestra en pantalla un mensaje con los consejos
-function mostrarConsejos(rango) {
+
+function mostrarConsejos(imc) {
   let consejos = '';
-  if (rango === 'Delgadez extrema') {
-    consejos =
-      'Algunos consejos para subir de peso son: consumir más calorías de las que se gastan, aumentar el consumo de proteínas y carbohidratos, realizar ejercicios de fuerza para aumentar la masa muscular, entre otros.';
-  } else if (rango === 'Peso normal') {
-    consejos =
-      'Para mantener un peso saludable es importante seguir una dieta equilibrada, hacer ejercicio regularmente, dormir bien y controlar el estrés.';
-  } else if (rango === 'Sobrepeso') {
-    consejos =
-      'Algunos consejos para bajar de peso son: seguir una dieta saludable y equilibrada, reducir el consumo de alimentos procesados y bebidas azucaradas, aumentar la actividad física, controlar las porciones de comida, entre otros.';
-  } else if (rango === 'Obesidad tipo 2') {
-    consejos =
-      'Es importante buscar ayuda profesional para tratar la obesidad, ya que puede estar asociada a problemas de salud graves. Algunos consejos generales son: seguir una dieta saludable y equilibrada, hacer ejercicio regularmente, reducir el estrés, controlar las porciones de comida, entre otros.';
+  switch (true) {
+    case imc < 16:
+      consejos =
+        'Tu IMC indica que tienes delgadez severa. Es posible que estés por debajo de tu peso saludable. Para aumentar de peso, es importante que comas alimentos ricos en nutrientes y calorías, como frutos secos, semillas, aguacate, plátanos, carne, pescado, etc.';
+      break;
+    case imc >= 16 && imc < 18.5:
+      consejos =
+        'Tu IMC indica que tienes un peso inferior al normal. Es importante que comas una dieta equilibrada y saludable para aumentar de peso de manera saludable. Incluye alimentos ricos en nutrientes como frutas, verduras, carnes magras, pescado, frutos secos, semillas, etc.';
+      break;
+    case imc >= 18.5 && imc < 25:
+      consejos =
+        'Tu IMC indica que tienes un peso saludable. Sigue comiendo una dieta equilibrada y saludable y mantente activo para mantener tu peso saludable.';
+      break;
+    case imc >= 25 && imc < 30:
+      consejos =
+        'Tu IMC indica que tienes sobrepeso. Es importante que comiences a hacer cambios en tu dieta y actividad física para perder peso y mejorar tu salud. Comienza por comer menos alimentos procesados y más frutas, verduras, granos enteros, proteínas magras y grasas saludables. También puedes aumentar tu actividad física diaria, como caminar, nadar, correr, etc.';
+      break;
+    case imc >= 30:
+      consejos =
+        'Tu IMC indica que tienes obesidad. Es importante que hagas cambios significativos en tu dieta y actividad física para perder peso y mejorar tu salud. Habla con tu médico sobre las opciones de tratamiento para la obesidad y comienza por comer menos alimentos procesados y más frutas, verduras, granos enteros, proteínas magras y grasas saludables. También puedes aumentar tu actividad física diaria, como caminar, nadar, correr, etc.';
+      break;
+    default:
+      consejos = 'Ha ocurrido un error al mostrar los consejos.';
+      break;
   }
-  // Mostrar los consejos en pantalla
-  document.getElementById('consejos').innerText = consejos;
+  document.querySelector('#consejos').innerHTML = consejos;
 }
 
 function calcularIMC() {
-  // ...
-  if (imc < 18.5) {
-    resultado.textContent = `Tu IMC es ${imc.toFixed(
-      1
-    )}, lo que indica que tienes bajo peso`;
-    mostrarConsejos('Bajo peso');
-  } else if (imc >= 18.5 && imc < 25) {
-    resultado.textContent = `Tu IMC es ${imc.toFixed(
-      1
-    )}, lo que indica que tienes un peso saludable`;
-    mostrarConsejos('Peso saludable');
-  } else if (imc >= 25 && imc < 30) {
-    resultado.textContent = `Tu IMC es ${imc.toFixed(
-      1
-    )}, lo que indica que tienes sobrepeso`;
-    mostrarConsejos('Sobrepeso');
-  } else {
-    resultado.textContent = `Tu IMC es ${imc.toFixed(
-      1
-    )}, lo que indica que tienes obesidad`;
-    mostrarConsejos('Obesidad');
-  }
+  const peso = parseFloat(document.querySelector('#peso').value);
+  const altura = parseFloat(document.querySelector('#altura').value);
+
+  const usuario = new Usuario('', 0, peso, altura);
+  const imc = usuario.calcularImc();
+  const interpretacionIMC = usuario.interpretarIMC(imc);
+
+  const resultadoDiv = document.querySelector('#resultado');
+  resultadoDiv.innerHTML = `<p>Su IMC es ${imc} e indica que tiene "${interpretacionIMC}"</p>`;
 }
 
 // Objeto que representa un usuario
@@ -98,33 +95,6 @@ class Usuario {
     this.edad = edad;
     this.peso = peso;
     this.altura = altura;
-  }
-
-  calcularImc() {
-    let indiceEntero = this.peso / (this.altura * this.altura);
-    return indiceEntero.toFixed(2);
-  }
-
-  interpretarIMC(imc) {
-    if (imc < 16) {
-      return 'Delgadez extrema';
-    } else if (imc <= 16.99) {
-      return 'Delgadez moderada';
-    } else if (imc <= 18.49) {
-      return 'Delgadez aceptable';
-    } else if (imc <= 24.99) {
-      return 'Peso normal';
-    } else if (imc <= 30) {
-      return 'Sobrepeso';
-    } else if (imc <= 34.99) {
-      return 'Obesidad tipo 1';
-    } else if (imc <= 40) {
-      return 'Obesidad tipo 2';
-    } else if (imc <= 49.99) {
-      return 'Obesidad tipo 3';
-    } else if (imc > 50) {
-      return 'Obesidad extrema';
-    }
   }
 }
 
@@ -159,4 +129,3 @@ function filtrarUsuariosPorPeso(pesoMinimo, pesoMaximo) {
 function filtrarUsuariosPorAltura(alturaMinima, alturaMaxima) {
   return usuarios.filter((usuario) => usuario.alt);
 }
-
