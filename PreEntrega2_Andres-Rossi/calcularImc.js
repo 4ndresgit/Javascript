@@ -39,6 +39,9 @@ calcularBtn.addEventListener('click', () => {
   const imcCalculator = new IMCCalculator(peso, altura);
   const imc = imcCalculator.calcularImc();
   const interpretacionIMC = imcCalculator.interpretarIMC(imc);
+  //Guardar el local Storage
+  localStorage.setItem('peso', peso)
+  localStorage.setItem('altura', altura);
 
   resultadoDiv.innerHTML = `<p>Su IMC es ${imc} e indica que tiene "${interpretacionIMC}"</p>`;
   mostrarConsejos(imc);
@@ -129,3 +132,13 @@ function filtrarUsuariosPorPeso(pesoMinimo, pesoMaximo) {
 function filtrarUsuariosPorAltura(alturaMinima, alturaMaxima) {
   return usuarios.filter((usuario) => usuario.alt);
 }
+
+// Cargar valores del Local Storage
+window.addEventListener('load', () => {
+  const peso = localStorage.getItem('peso');
+  const altura = localStorage.getItem('altura');
+  if (peso && altura) {
+    document.querySelector('#peso').value = peso;
+    document.querySelector('#altura').value = altura;
+  }
+});
