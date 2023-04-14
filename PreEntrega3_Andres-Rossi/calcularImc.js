@@ -30,7 +30,6 @@ class IMCCalculator {
 
 const calcularBtn = document.querySelector('#calcular-btn');
 const resultadoDiv = document.querySelector('#resultado');
-const estiloDiv = document.getElementById('estilos');
 
 calcularBtn.addEventListener('click', () => {
   const peso = parseFloat(document.querySelector('#peso').value);
