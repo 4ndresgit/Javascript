@@ -6,8 +6,8 @@ body {
 /* Estilos para la navbar */
 
 nav {
-  background-color: #c2c2c2;
   overflow: hidden;
+  border-bottom: solid 1px #d2d2d2;
   }
   
 nav ul {
@@ -37,6 +37,7 @@ nav ul a:hover {
   margin: 0 5px;
   width: 50px;
   height: 50px;
+  color: #2b2b2b;
 }
 
 .container {
@@ -49,7 +50,7 @@ nav ul a:hover {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 40px;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -112,17 +113,6 @@ button:hover {
 }
 
 .resultado {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 30px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-
-}
-
-#consejos {
   width: 700px;
   font-size: 24px;
   font-weight: bold;
@@ -131,5 +121,5 @@ button:hover {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-
 }
+

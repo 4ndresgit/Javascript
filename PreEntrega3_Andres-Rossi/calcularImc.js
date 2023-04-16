@@ -39,7 +39,7 @@ calcularBtn.addEventListener('click', () => {
   const imc = imcCalculator.calcularImc();
   const interpretacionIMC = imcCalculator.interpretarIMC(imc);
   //Guardar el local Storage
-  localStorage.setItem('peso', peso)
+  localStorage.setItem('peso', peso);
   localStorage.setItem('altura', altura);
 
   resultadoDiv.innerHTML = `<p>Su IMC es ${imc} e indica que tiene "${interpretacionIMC}"</p>`;
@@ -49,7 +49,23 @@ calcularBtn.addEventListener('click', () => {
 //Toma como parámetro el rango de peso y muestra en pantalla un mensaje con los consejos
 
 function mostrarConsejos(imc) {
-  let consejos = '';
+  let consejos =
+    imc < 16
+      ? 'Tu IMC indica que tienes delgadez severa. Es posible que estés por debajo de tu peso saludable. Para aumentar de peso, es importante que comas alimentos ricos en nutrientes y calorías, como frutos secos, semillas, aguacate, plátanos, carne, pescado, etc.'
+      : imc >= 16 && imc < 18.5
+      ? 'Tu IMC indica que tienes un peso inferior al normal. Es importante que comas una dieta equilibrada y saludable para aumentar de peso de manera saludable. Incluye alimentos ricos en nutrientes como frutas, verduras, carnes magras, pescado, frutos secos, semillas, etc.'
+      : imc >= 18.5 && imc < 25
+      ? 'Tu IMC indica que tienes un peso saludable. Sigue comiendo una dieta equilibrada y saludable y mantente activo para mantener tu peso saludable.'
+      : imc >= 25 && imc < 30
+      ? 'Tu IMC indica que tienes sobrepeso. Es importante que comiences a hacer cambios en tu dieta y actividad física para perder peso y mejorar tu salud. Comienza por comer menos alimentos procesados y más frutas, verduras, granos enteros, proteínas magras y grasas saludables. También puedes aumentar tu actividad física diaria, como caminar, nadar, correr, etc.'
+      : imc >= 30
+      ? 'Tu IMC indica que tienes obesidad. Es importante que hagas cambios significativos en tu dieta y actividad física para perder peso y mejorar tu salud. Habla con tu médico sobre las opciones de tratamiento para la obesidad y comienza por comer menos alimentos procesados y más frutas, verduras, granos enteros, proteínas magras y grasas saludables. También puedes aumentar tu actividad física diaria, como caminar, nadar, correr, etc.'
+      : 'Ha ocurrido un error al mostrar los consejos.';
+
+  document.querySelector('#consejos').innerHTML = consejos;
+}
+
+/*let consejos = '';
   switch (true) {
     case imc < 16:
       consejos =
@@ -76,7 +92,7 @@ function mostrarConsejos(imc) {
       break;
   }
   document.querySelector('#consejos').innerHTML = consejos;
-}
+}*/
 
 function calcularIMC() {
   const peso = parseFloat(document.querySelector('#peso').value);
