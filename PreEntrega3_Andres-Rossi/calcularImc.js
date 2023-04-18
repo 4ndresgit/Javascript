@@ -79,20 +79,6 @@ function mostrarConsejos(imc) {
   document.querySelector('#consejos').innerHTML = consejos;
 }
 
-/*function calcularIMC() {
-  const peso = parseFloat(document.querySelector('#peso').value);
-  const altura = parseFloat(document.querySelector('#altura').value);
-  const sexo = document.querySelector('input[name="sexo"]:checked').value;
-  const usuario = new Usuario(sexo, peso, altura);
-
-  const imcCalculator = new IMCCalculator(peso, altura, sexo, edad);
-  const imc = imcCalculator.calcularImc();
-  const interpretacionIMC = imcCalculator.interpretarIMC(imc);
-
-
-  const resultadoDiv = document.querySelector('#resultado');
-  resultadoDiv.innerHTML = `<p>Su IMC es ${imc} e indica que tiene "${interpretacionIMC}"</p>`;
-}*/
 function calcularIMC() {
   const peso = usuario.getPeso();
   const altura = usuario.getAltura();
