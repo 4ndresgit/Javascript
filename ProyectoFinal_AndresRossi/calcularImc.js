@@ -42,7 +42,6 @@ const calcularBtn = document.querySelector('#calcular-btn');
 const resultadoDiv = document.querySelector('#resultado');
 
 calcularBtn.addEventListener('click', () => {
-
   const peso = parseFloat(document.querySelector('#peso').value);
   const altura = parseFloat(document.querySelector('#altura').value) * 0.01;
   const sexo = document.querySelector('#sexo').value;
