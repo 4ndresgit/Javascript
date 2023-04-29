@@ -6,15 +6,14 @@ class IMCCalculator {
     this.edad = edad;
   }
   calcularImc() {
-    let indice;
-    if (this.sexo === 'Hombre') {
-      indice = this.peso / (this.altura * this.altura) - 0.0022 * this.edad;
-    } else {
-      indice =
-        (this.peso * 0.9) / (this.altura * this.altura) -
-        7.9 * (this.edad / 100);
-    }
-    return indice.toFixed(2);
+    return new Promise((resolve, reject) => {
+      const imc = this.peso / this.altura ** 2;
+      if (isNaN(imc)) {
+        reject('Error: peso o altura inválidos');
+      } else {
+        resolve(imc);
+      }
+    });
   }
 
   interpretarIMC(imc) {
@@ -45,18 +44,30 @@ calcularBtn.addEventListener('click', () => {
   const peso = parseFloat(document.querySelector('#peso').value);
   const altura = parseFloat(document.querySelector('#altura').value) * 0.01;
   const sexo = document.querySelector('#sexo').value;
-
   const edad = parseInt(document.querySelector('#edad').value);
+
   const imcCalculator = new IMCCalculator(peso, altura, sexo, edad);
+  imcCalculator
+    .calcularImc()
+    .then((imc) => {
+      const interpretacionIMC = imcCalculator.interpretarIMC(imc);
 
-  const imc = imcCalculator.calcularImc();
-  const interpretacionIMC = imcCalculator.interpretarIMC(imc);
-  //Guardar el local Storage
-  localStorage.setItem('peso', peso);
-  localStorage.setItem('altura', altura);
+      //Guardar el local Storage
+      localStorage.setItem('peso', peso);
+      localStorage.setItem('altura', altura);
 
-  resultadoDiv.innerHTML = `<p>Su IMC es ${imc} e indica que tiene "${interpretacionIMC}"</p>`;
-  mostrarConsejos(imc);
+      resultadoDiv.innerHTML = `<p>Su IMC es ${imc} e indica que tiene "${interpretacionIMC}"</p>`;
+      mostrarConsejos(imc);
+
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '¡Todo listo!',
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    })
+    .catch((error) => console.error(error));
 });
 
 //Toma como parámetro el rango de peso y muestra en pantalla un mensaje con los consejos
@@ -101,6 +112,19 @@ function calcularIMC() {
   localStorage.setItem('altura', altura);
   localStorage.setItem('edad', edad);
   localStorage.setItem('sexo', sexo);
+
+  async function calcularIMC(peso, altura, sexo, edad) {
+    const datos = await fetch('datos.json').then((response) => response.json());
+
+    const rangoIMC = getRangoIMC(peso, altura);
+    const { IMC_min, IMC_max } = datos[sexo][getGrupoEdad(edad)][rangoIMC];
+
+    return {
+      IMC: peso / altura ** 2,
+      IMC_min,
+      IMC_max,
+    };
+  }
 }
 
 // Objeto que representa un usuario

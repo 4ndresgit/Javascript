@@ -2,7 +2,13 @@
 <html>
   <head>
     <title>Calculadora de IMC</title>
-
+    <!-- Googlr fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font-awesome -->
     <link
       rel="stylesheet"
@@ -29,28 +35,28 @@
         <a href="#"><i class="fa-brands fa-whatsapp fa-2x"></i> </a>
       </div>
     </nav>
-    <h1>Calculadora de IMC</h1>
+    <h1>Calcular IMC</h1>
     <h3>Necesitamos un poco de informacion para un calculo correcto</h3>
     <form>
       <div class="cards">
         <div>
-          <label for="peso">Peso en kg</label>
+          <label for="peso">¿Cuál es tu peso?</label>
           <input type="number" id="peso" name="peso" required />
         </div>
 
         <div>
-          <label for="altura">Altura en Cm</label>
+          <label for="altura">¿Cuanto mides?</label>
           <input type="number" id="altura" name="altura" required />
         </div>
         <div>
-          <label for="sexo">Sexo</label>
+          <label for="sexo">¿Cuál es tu género?</label>
           <select id="sexo" name="sexo">
             <option value="Hombre">Hombre</option>
             <option value="Mujer">Mujer</option>
           </select>
         </div>
         <div>
-          <label for="edad">Edad</label>
+          <label for="edad">¿Cuantos años tienes?</label>
           <input type="number" id="edad" name="Edad" required />
         </div>
       </div>
@@ -61,8 +67,11 @@
 
       <div class="resultado" id="consejos"></div>
     </form>
-    
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- CDN Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Script -->
     <script src="calcularImc.js"></script>
   </body>
 </html>

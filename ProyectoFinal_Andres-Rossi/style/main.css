@@ -1,6 +1,6 @@
 body {
   background-color: #eaeff2;
-  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Estilos para la navbar */
@@ -12,6 +12,8 @@ nav {
   
 nav ul {
   list-style-type: none;
+  font-weight: 700;
+  font-size: 20px;
 } 
 
 nav ul a {
@@ -23,8 +25,8 @@ nav ul a {
 }
 
 nav ul a:hover {
-  background-color: black;
-  color: white;
+  background-color: #c2c2c2;
+  color: black;
 }
 
 /* Estilos para los logos de redes sociales */
@@ -36,7 +38,7 @@ nav ul a:hover {
 .redes-sociales i {
   margin: 0 5px;
   width: 50px;
-  height: 50px;
+  height: 30px;
   color: #2b2b2b;
 }
 
@@ -53,6 +55,7 @@ nav ul a:hover {
 h1 {
   font-size: 70px;
   text-align: center;
+  margin-top: 60px;
   margin-bottom: 20px;
 }
 
@@ -66,17 +69,17 @@ form {
   align-items: center;
 }
 .cards {
-  height: 700px;
-  width: 850px;
+  height: 800px;
+  width: 1100px;
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
 .cards div {
-  width: 400px;
+  width: 500px;
   height: 300px;
   background-color: #fafafa;
   
@@ -86,8 +89,14 @@ form {
   border-radius: 20px;
 }
 
+.cards div:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+
 label {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   margin: 40px 20px;
   text-align: center;
@@ -96,11 +105,16 @@ label {
 .cards select {
   width: 300px;
   height: 50px;
-  margin: 50px;
+  margin: 45px auto;
   border: none;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
+
+#sexo {
+  font-size: 20px;
+}
+
 input {
   text-align: center;
   font-size: 20px;
@@ -112,23 +126,27 @@ input {
 }
 
 button {
-  width: 700px;
+  width: 400px;
+  height: 50px;
   font-size: 18px;
   font-weight: bold;
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #ed331e;
+  background-image: linear-gradient(to bottom right, #ed331e, #ff7f50);
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
+
 button:hover {
-  background-color: #3e8e41;
+  background-color: #ff7f50;
+  background-image: linear-gradient(to bottom right, #ff7f50, #ed331e);
 }
 
-.resultado {
+.resultado,
+.consejos {
   width: 700px;
   font-size: 24px;
   font-weight: bold;

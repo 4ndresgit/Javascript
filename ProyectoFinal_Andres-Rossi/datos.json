@@ -1,0 +1,41 @@
+
+{
+  "IMC": [
+    {
+      "valor": 16,
+      "mensaje": "Delgadez extrema"
+    },
+    {
+      "valor": 16.99,
+      "mensaje": "Delgadez moderada"
+    },
+    {
+      "valor": 18.49,
+      "mensaje": "Delgadez aceptable"
+    },
+    {
+      "valor": 24.99,
+      "mensaje": "Peso normal"
+    },
+    {
+      "valor": 30,
+      "mensaje": "Sobrepeso"
+    },
+    {
+      "valor": 34.99,
+      "mensaje": "Obesidad tipo 1"
+    },
+    {
+      "valor": 40,
+      "mensaje": "Obesidad tipo 2"
+    },
+    {
+      "valor": 49.99,
+      "mensaje": "Obesidad tipo 3"
+    },
+    {
+      "valor": 100,
+      "mensaje": "Obesidad extrema"
+    }
+  ]
+}
